@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Your lists</h1>
+  <% @lists.each do |list| %>
+    <div class="cards d-flex justify-content-between">
+        <% if list.photo.key %>
+          <%= cl_image_tag list.photo.key, height: 300, width: 400, crop: :fit %>
+        <% end %>
+      <%= link_to list.name, list_path(list) %>
+      <%= link_to list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"} do %>
+        <i class="fa-solid fa-trash"></i>
+      <% end %>
+  </div>
+  <% end %>
+  <i class="fa-solid fa-plus"></i> <%= link_to "Add list", new_list_path %>
+</div>
